@@ -36,7 +36,26 @@
             <h1 id="condition" class="lead">Clouds</h1>
         </div>
     </div>
-    
+    <script>
+        const weatherApp = {
+            key: '58a1b30fea50839b43ffd2a85a1f7f28',
+            url: 'https://api.openweathermap.org/data/2.5/weather'
+        }
+        const showWeather = document.getElementById('search-btn');
+        const showWeather2 = showWeather.addEventListener('click', function () {
+            const cityName = document.getElementById('input-cityname').value;
+            fetch(`${weatherApp.url}?q=${cityName}&appid=${weatherApp.key}`)
+                .then(res => res.json());
+                .then(json => weatherApi(json));
+        })
+        function weatherApi(data) {
+            document.getElementById('showCity').innerText = data.name;
+            const temparatureInDegree = (data.main.temp - 273).toFixed(2);
+            document.getElementById('temparature').innerText = temparatureInDegree;
+            document.getElementById('condition').innerText = data.weather[0].description;
+        }
+
+    </script>
 </body>
 
 </html>
