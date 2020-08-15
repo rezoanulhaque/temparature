@@ -45,8 +45,8 @@
         const showWeather2 = showWeather.addEventListener('click', function () {
             const cityName = document.getElementById('input-cityname').value;
             fetch(`${weatherApp.url}?q=${cityName}&appid=${weatherApp.key}`)
-                .then(res => res.json());
-                .then(json => weatherApi(json));
+                .then(res => res.json())
+                .then(json => weatherApi(json))
         })
         function weatherApi(data) {
             document.getElementById('showCity').innerText = data.name;
